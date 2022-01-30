@@ -19,6 +19,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -41,8 +42,9 @@ public class UserService implements UserDetailsService {
     }
 
     public UserDto createUser(UserCreateRequest request){
+        //Role veterinary = new Role("USER");
         User user = new User(request.getName(), request.getLastName(), request.getUsername(),encoder.encode(request.getPassword()), request.getRoles());
-        user.setRoles(List.of(new Role("ADMIN")));
+        user.setRoles(Arrays.asList(new Role("USER")));
         return modelMapper.map(userRepository.save(user),UserDto.class);
     }
 
