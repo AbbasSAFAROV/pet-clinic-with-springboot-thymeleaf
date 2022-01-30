@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head th:replace="common/header::header"></head>
+
+<body id="page-top">
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    <div th:replace="common/sidebar::sidebar"></div>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            <div th:replace="common/navbar::navbar"></div>
+            <!-- End of Topbar -->
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                            class="fas fa-download fa-sm text-white-50"></i> Add new employee </a>
+                    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm"><i
+                            class="fas fa-download fa-sm text-white-50"></i> Add new owner </a>
+                    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i
+                            class="fas fa-download fa-sm text-white-50"></i> Add new pet </a>
+                </div>
+                <!-- Page Heading -->
+
+                <!-- DataTales Example -->
+                <div class="container">
+
+                    <div class="container">
+                        <form th:action="@{/owners/add}" method="post" th:object="${owner}">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="name">Name Surname</label>
+                                    <input type="text" class="form-control" id="name" th:field="*{nameSurname}" placeholder="Name and Surname">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control" id="email" th:field="*{email}" placeholder="Email">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="phone">Phone</label>
+                                    <input type="tel" class="form-control" id="phone" th:field="*{phone}" placeholder="Phone">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="contact">Contact</label>
+                                    <input type="text" class="form-control" id="contact" th:field="*{contact}" placeholder="Contact">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <input type="submit" class="btn btn-primary">
+                                </div>
+                            </div>
+                            <!-- <button type="submit" class="btn btn-primary">Sign in</button> -->
+                        </form>
+                    </div>
+                </div>
+
+                <!-- /.container-fluid -->
+
+        </div>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Copyright &copy; Your Website 2021</span>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" href="login.html">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
+-->
+</div>
+<div th:insert="common/footer::footer"></div>
+
+</body>
+
+</html>
