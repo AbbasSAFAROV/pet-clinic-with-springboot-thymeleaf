@@ -28,8 +28,7 @@ public class OwnerRestController {
 
     @PostMapping()
     public ResponseEntity<OwnerDto> createOwner(@RequestBody OwnerCreateRequest request){
-        var ownerDtoResponseEntity = new ResponseEntity<OwnerDto>(ownerService.createOwner(request), HttpStatus.CREATED);
-        return ownerDtoResponseEntity;
+        return new ResponseEntity<OwnerDto>(ownerService.createOwner(request), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
