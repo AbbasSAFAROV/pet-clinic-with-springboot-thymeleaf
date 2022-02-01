@@ -64,6 +64,10 @@ public class UserService implements UserDetailsService {
         return userRepository.findById(id).orElseThrow(()->new UserNotFoundException("user not found id:"+id));
     }
 
+    public UserDto getUserById(Long id){
+        return modelMapper.map(findUserById(id),UserDto.class);
+    }
+
     public User getUserByUsername(String username){
         return userRepository.findUserByUsername(username);
     }

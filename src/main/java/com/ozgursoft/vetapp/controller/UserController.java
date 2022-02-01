@@ -2,22 +2,22 @@ package com.ozgursoft.vetapp.controller;
 
 
 import com.ozgursoft.vetapp.model.request.UserCreateRequest;
+import com.ozgursoft.vetapp.service.RoleService;
 import com.ozgursoft.vetapp.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/users")
 public class UserController {
 
     private final UserService userService;
+    private final RoleService roleService;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, RoleService roleService) {
         this.userService = userService;
+        this.roleService = roleService;
     }
 
     @ModelAttribute("user")
@@ -47,6 +47,36 @@ public class UserController {
         return "users/users";
     }
 
+    @GetMapping("/create")
+    public String createUser(Model model){
+        model.addAttribute("roles",roleService.getAllRoles());
+        return "users/addUser";
+    }
+
+    @PostMapping("/create")
+    public String createUser(@ModelAttribute("user") UserCreateRequest request){
+        userService.createUser(request);
+        return "redirect:/dashboard?success";
+    }
+
+    @GetMapping("/update/{id}")
+    public String updateUser(@PathVariable Long id, Model model){
+        model.addAttribute("user",userService.getUserById(id));
+        model.addAttribute("roles",userService.getUserById(id).getRoles());
+        return "users/updateUser";
+    }
+
+    @PostMapping("/update/{id}")
+    public String updateUser(@PathVariable Long id, @ModelAttribute("user") UserCreateRequest request){
+        userService.updateUser(request,id);
+        return "redirect:/users?success";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteUser(@PathVariable Long id){
+        userService.deleteUserById(id);
+        return "redirect:/users?success";
+    }
 
     @GetMapping("/blank")
     public String getBlankPage(){
