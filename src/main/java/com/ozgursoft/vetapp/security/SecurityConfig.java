@@ -16,13 +16,13 @@ import org.springframework.stereotype.Component;
 @Component
 @Configuration
 @EnableWebSecurity
-public class SecuirtyConfig extends WebSecurityConfigurerAdapter {
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Lazy
     private final UserService userService;
     private final BCryptPasswordEncoder encoder;
 
-    public SecuirtyConfig(UserService userService, BCryptPasswordEncoder encoder) {
+    public SecurityConfig(UserService userService, BCryptPasswordEncoder encoder) {
         this.userService = userService;
         this.encoder = encoder;
     }

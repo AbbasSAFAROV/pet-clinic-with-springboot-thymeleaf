@@ -63,6 +63,20 @@ public class OwnerController {
         return "redirect:/owners";
     }
 
+    @GetMapping("/detail?/{id}")
+    public String ownerDetail(@PathVariable Long id, Model model){
+        model.addAttribute("owner",ownerService.getOwnerById(id));
+        model.addAttribute("pets",petService.getPetsByOwnerId(id));
+        return "owners/ownerDetail";
+    }
+
+    @GetMapping("/detail/{id}")
+    public String ownerDetailPage(@PathVariable Long id, Model model){
+        model.addAttribute("owner",ownerService.getOwnerById(id));
+        model.addAttribute("pets",petService.getPetsByOwnerId(id));
+        return "owners/detail";
+    }
+
     @GetMapping("/delete/{id}")
     public String deleteOwnerById(@PathVariable("id") Long id){
         ownerService.deleteOwnerById(id);

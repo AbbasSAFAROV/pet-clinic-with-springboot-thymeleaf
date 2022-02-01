@@ -1,6 +1,7 @@
 package com.ozgursoft.vetapp.service;
 
 
+import com.ozgursoft.vetapp.entity.Pet;
 import com.ozgursoft.vetapp.entity.Role;
 import com.ozgursoft.vetapp.entity.User;
 import com.ozgursoft.vetapp.exception.UserNotFoundException;
@@ -67,6 +68,8 @@ public class UserService implements UserDetailsService {
     public UserDto getUserById(Long id){
         return modelMapper.map(findUserById(id),UserDto.class);
     }
+
+
 
     public User getUserByUsername(String username){
         return userRepository.findUserByUsername(username);

@@ -38,62 +38,51 @@
                 <!-- Page Heading -->
 
                 <!-- DataTales Example -->
-                <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Owners DataTables</h6>
+
+
+                <div class="card text-center">
+                    <div class="card-header">
+                        Featured
                     </div>
                     <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Name Surname</th>
-                                    <th>Email</th>
-                                    <th>Phone</th>
-                                    <th>Contact</th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr th:each="owner:${owners}">
-                                    <td th:text="${owner.getId}"></td>
-                                    <td th:text="${owner.nameSurname}"></td>
-                                    <td th:text="${owner.email}"></td>
-                                    <td th:text="${owner.phone}"></td>
-                                    <td th:text="${owner.contact}"></td>
-                                    <td>
-                                        <a class="btn btn-danger btn-circle" th:href="@{'/owners/delete/'+${owner.getId}}">
-                                            <i class="fas fa-trash"></i>
-
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-warning btn-circle" th:href="@{'/owners/update/'+${owner.getId}}">
-                                            <i class="fas fa-exclamation-triangle"></i>
-
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-info btn-circle" th:href="@{'/owners/detail/'+${owner.id}}">
-                                            <i class="fas fa-info-circle"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                        <h5 class="card-title" th:text="${owner.getNameSurname()}"></h5>
+                        <p class="card-text" th:text="${owner.getEmail()}"></p>
+                        <p class="card-text" th:text="${owner.getPhone()}"></p>
+                        <p class="card-text" th:text="${owner.getContact()}"></p>
+                        <a th:href="@{/pets/add}" class="btn btn-primary">Add a pet</a>
+                    </div>
+                    <div class="card-footer text-muted">
+                        2 days ago
                     </div>
                 </div>
 
+
+                <div class="container">
+
+                    <div class="row">
+
+                        <div class="col-sm-6" th:if="${pets}" th:each="pet:${owner.getPets()}">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title" th:text="${pet.getName()}"></h5>
+                                    <p class="card-text" th:text="${pet.getType()}"></p>
+                                    <p class="card-text" th:text="${pet.getGenus()}">With supporting text below as a natural lead-in to additional content.</p>
+                                    <p class="card-text" th:text="${pet.getAge()}">With supporting text below as a natural lead-in to additional content.</p>
+                                    <p class="card-text" th:text="${pet.getDescription()}">With supporting text below as a natural lead-in to additional content.</p>
+                                    <p class="card-text" th:text="${pet.getOwner().getNameSurname()}">With supporting text below as a natural lead-in to additional content.</p>
+                                    <a href="#" class="btn btn-primary">View</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- DataTales Example -->
+                <!-- /.container-fluid -->
             </div>
-            <!-- /.container-fluid -->
-
+            <!-- End of Main Content -->
         </div>
-        <!-- End of Main Content -->
-
         <!-- Footer -->
         <footer class="sticky-footer bg-white">
             <div class="container my-auto">
