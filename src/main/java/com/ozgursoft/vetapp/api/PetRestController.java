@@ -48,5 +48,9 @@ public class PetRestController {
         return ResponseEntity.ok(petService.deletePetById(id));
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<List<Pet>> getPetByName(@RequestParam("name") String name){
+        return new ResponseEntity<>(petService.getPetByName(name),HttpStatus.OK);
+    }
 
 }

@@ -61,6 +61,10 @@ public class OwnerService {
         return ownerRepository.findById(id).orElseThrow(()->new OwnerNotFoundException("Owner not found with id:"+id));
     }
 
+    public List<Owner> getOwnerByNameAndSurname(String name){
+        return ownerRepository.findOwnerByNameSurnameContains(name);
+    }
+
 
 
 

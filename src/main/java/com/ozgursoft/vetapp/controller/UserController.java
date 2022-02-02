@@ -72,6 +72,12 @@ public class UserController {
         return "redirect:/users?success";
     }
 
+    @GetMapping("/detail/{id}")
+    public String userDetail(@PathVariable Long id, Model model){
+        model.addAttribute("user",userService.findUserById(id));
+        return "users/detail";
+    }
+
     @GetMapping("/delete/{id}")
     public String deleteUser(@PathVariable Long id){
         userService.deleteUserById(id);

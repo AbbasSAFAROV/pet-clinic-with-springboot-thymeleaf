@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,9 +26,14 @@
                 Admin role can do everything.
             </p>
             <p class="lead">
-                <a class="btn btn-primary btn-lg" th:href="@{/users/register}" role="button">Register</a>
-                <a class="btn btn-success btn-lg" th:href="@{/users/login}" role="button">Login</a>
-                <a class="btn btn-info btn-lg" th:href="@{/dashboard}" role="button">Dashboard</a>
+                <div sec:authorize="isAuthenticated()">
+                    <a class="btn btn-info btn-lg" th:href="@{/dashboard}" role="button">Dashboard</a>
+                </div>
+                <div sec:authorize="!isAuthenticated()">
+                    <a class="btn btn-primary btn-lg" th:href="@{/users/register}" role="button">Register</a>
+                    <a class="btn btn-success btn-lg" th:href="@{/users/login}" role="button">Login</a>
+                </div>
+
             </p>
         </div>
     </div>

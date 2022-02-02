@@ -72,12 +72,12 @@ public class PetService {
         return modelMapper.map(findPetById(id),PetDto.class);
     }
 
-    public List<Pet> getPetsByOwnerId(Long id){
-        return ownerService.getOwnerById(id).getPets();
-    }
-
     public Pet findPetById(Long id){
         return petRepository.findById(id).orElseThrow(()->new PetNotFoundException("Pet not found id:"+id));
+    }
+
+    public List<Pet> getPetByName(String name){
+        return petRepository.findPetByNameContains(name);
     }
 
 }

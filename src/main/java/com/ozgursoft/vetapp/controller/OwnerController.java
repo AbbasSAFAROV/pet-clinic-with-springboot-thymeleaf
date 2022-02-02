@@ -1,5 +1,6 @@
 package com.ozgursoft.vetapp.controller;
 
+import com.ozgursoft.vetapp.entity.Owner;
 import com.ozgursoft.vetapp.model.dto.OwnerDto;
 import com.ozgursoft.vetapp.model.request.OwnerCreateRequest;
 import com.ozgursoft.vetapp.service.OwnerService;
@@ -63,17 +64,9 @@ public class OwnerController {
         return "redirect:/owners";
     }
 
-    @GetMapping("/detail?/{id}")
-    public String ownerDetail(@PathVariable Long id, Model model){
-        model.addAttribute("owner",ownerService.getOwnerById(id));
-        model.addAttribute("pets",petService.getPetsByOwnerId(id));
-        return "owners/ownerDetail";
-    }
-
     @GetMapping("/detail/{id}")
     public String ownerDetailPage(@PathVariable Long id, Model model){
         model.addAttribute("owner",ownerService.getOwnerById(id));
-        model.addAttribute("pets",petService.getPetsByOwnerId(id));
         return "owners/detail";
     }
 
@@ -81,6 +74,13 @@ public class OwnerController {
     public String deleteOwnerById(@PathVariable("id") Long id){
         ownerService.deleteOwnerById(id);
         return "redirect:/owners";
+    }
+
+    @GetMapping("/search")
+    public String searchOwner(@RequestParam("search") String name, Model model){
+        List<Owner> owners = ownerService.getOwnerByNameAndSurname(name);
+        model.addAttribute("owners",owners);
+        return "owners/search";
     }
 
 

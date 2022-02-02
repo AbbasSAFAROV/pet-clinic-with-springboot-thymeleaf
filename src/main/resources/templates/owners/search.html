@@ -39,43 +39,51 @@
 
                 <!-- DataTales Example -->
 
-
-                <div class="card text-center">
-                    <div class="card-header">
-                        Featured
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title" th:text="${owner.getNameSurname()}"></h5>
-                        <p class="card-text" th:text="${owner.getEmail()}"></p>
-                        <p class="card-text" th:text="${owner.getPhone()}"></p>
-                        <p class="card-text" th:text="${owner.getContact()}"></p>
-                        <a th:href="@{/pets/add}" class="btn btn-primary">Add a pet</a>
-                    </div>
-                    <div class="card-footer text-muted">
-                        2 days ago
-                    </div>
-                </div>
-
-
                 <div class="container">
+                    <div class="owner-detail">
+                        <div class="card" th:each="owner:${owners}">
+                            <div class="text-center">
+                                <h5 class="card-header"> Info.
+                                    <a class="btn btn-primary btn-sm text-light ml-3" th:href="@{'/owners/detail/'+${owner.getId}}">View</a>
+                                </h5>
+                            </div>
 
-                    <div class="row">
+                            <div class="card-body">
+                                <div class="mt-2">
+                                    <div class="row">
 
-                        <div class="col-sm-6" th:if="${pets}" th:each="pet:${owner.getPets()}">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title" th:text="${pet.getName()}"></h5>
-                                    <p class="card-text" th:text="${pet.getType()}"></p>
-                                    <p class="card-text" th:text="${pet.getGenus()}">With supporting text below as a natural lead-in to additional content.</p>
-                                    <p class="card-text" th:text="${pet.getAge()}">With supporting text below as a natural lead-in to additional content.</p>
-                                    <p class="card-text" th:text="${pet.getDescription()}">With supporting text below as a natural lead-in to additional content.</p>
-                                    <p class="card-text" th:text="${pet.getOwner().getNameSurname()}">With supporting text below as a natural lead-in to additional content.</p>
-                                    <a href="#" class="btn btn-primary">View</a>
+                                        <div class="col-lg-6 col-sm-12">
+                                <span class="card-text"><i class="fa fa-user mr-2"></i>
+                                    <span class="font-weight-bold">Name Surname:
+                                        <span th:text="${owner.getNameSurname()}"></span>
+                                    </span>
+                                </span>
+                                        </div>
+                                        <div class="col-lg-6 col-sm-12">
+                                <span class="card-text"><i class="fa fa-envelope mr-2"></i>
+                                    <span class="font-weight-bold">EMail address:</span>
+                                    <span th:text="${owner.getEmail()}"></span>
+                                </span>
+                                        </div>
+                                        <div class="col-lg-6 col-sm-12 mt-2">
+                                <span class="card-text mr-2"><i class="fa fa-phone"></i>
+                                    <span class="font-weight-bold">Phone number:</span>
+                                    <span th:text="${owner.getPhone()}"></span>
+                                </span>
+                                        </div>
+                                        <div class="col-lg-6 col-sm-12 mt-2">
+                                <span class="card-text"><i class="fa fa-map-marker-alt mr-1"></i>
+                                    <span class="font-weight-bold">Contact :</span>
+                                    <span th:text="${owner.getContact()}"></span>
+                                </span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
+                    <hr/>
+
 
                 </div>
                 <!-- DataTales Example -->
@@ -130,3 +138,12 @@
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+

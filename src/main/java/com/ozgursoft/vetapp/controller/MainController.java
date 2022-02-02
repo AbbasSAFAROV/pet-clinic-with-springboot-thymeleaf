@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -37,6 +38,13 @@ public class MainController {
         List<PetDto> petDtos = petService.getAllPets();
         model.addAttribute("pets",petDtos);
         return "dashboard";
+    }
+
+    @GetMapping("/search")
+    public String search(@RequestParam("search") String search , Model model){
+        model.addAttribute("pets",petService.getPetByName(search));
+        model.addAttribute("owners",ownerService.getOwnerByNameAndSurname(search));
+        return "search";
     }
 
 

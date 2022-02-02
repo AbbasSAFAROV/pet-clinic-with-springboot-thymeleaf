@@ -4,7 +4,6 @@ package com.ozgursoft.vetapp.controller;
 import com.ozgursoft.vetapp.entity.Owner;
 import com.ozgursoft.vetapp.entity.Pet;
 import com.ozgursoft.vetapp.model.dto.OwnerDto;
-import com.ozgursoft.vetapp.model.dto.PetDto;
 import com.ozgursoft.vetapp.model.request.PetCreateRequest;
 import com.ozgursoft.vetapp.service.OwnerService;
 import com.ozgursoft.vetapp.service.PetService;
@@ -33,10 +32,7 @@ public class PetController {
 
     @GetMapping()
     public String getAllPets(Model model){
-
-        List<PetDto> petDtos = petService.getAllPets();
         List<Pet> pets = petService.findAllPets();
-        List<OwnerDto> ownerDtos = ownerService.getAllOwners();
         model.addAttribute("pets",pets);
         return "pets/pets";
     }
@@ -75,6 +71,11 @@ public class PetController {
     public String petDetail(@PathVariable Long id,Model model){
         model.addAttribute("pet",petService.findPetById(id));
         return "/pets/detail";
+    }
+
+    public String searchPet(@RequestParam("search") String name, Model model){
+        model.addAttribute("pets",petService.getPetByName(name));
+        return "pets/search";
     }
 
     @GetMapping("/delete/{id}")
