@@ -47,5 +47,9 @@ public class MainController {
         return "search";
     }
 
+    @GetMapping("/403")
+    public String access(){
+        return "403";
+    }
 
 }

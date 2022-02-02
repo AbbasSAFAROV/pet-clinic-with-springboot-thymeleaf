@@ -64,16 +64,14 @@
                                     <td th:text="${owner.email}"></td>
                                     <td th:text="${owner.phone}"></td>
                                     <td th:text="${owner.contact}"></td>
-                                    <td>
+                                    <td sec:authorize="hasAuthority('ADMIN')">
                                         <a class="btn btn-danger btn-circle" th:href="@{'/owners/delete/'+${owner.getId}}">
                                             <i class="fas fa-trash"></i>
-
                                         </a>
                                     </td>
                                     <td>
                                         <a class="btn btn-warning btn-circle" th:href="@{'/owners/update/'+${owner.getId}}">
                                             <i class="fas fa-exclamation-triangle"></i>
-
                                         </a>
                                     </td>
                                     <td>

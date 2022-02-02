@@ -43,10 +43,10 @@ public class DataLoader implements CommandLineRunner {
         Owner safka = new Owner("safka","05459149871","safka@mail.com","konya",null);
         Owner qorya = new Owner("qorya","05459149872","qorya@mail.com","ankara",null);
 
-        Pet dog = new Pet("pitbul","americano","dog","iyi huylu","2",abbas);
-        Pet cat = new Pet("pasha","iranian","cat","iyi huylu","2",safka);
-        Pet kush = new Pet("papagan","papagn01","bird","iyi huylu","2",qorya);
-        Pet kush2 = new Pet("papagan2","papagn01","bird","iyi huylu","2",qorya);
+        Pet dog = new Pet("pitbul","americano","dog","has coivd-19","2",abbas);
+        Pet cat = new Pet("pasha","iranian","cat","has coivd-20","2",safka);
+        Pet kush = new Pet("papagan","papagn01","bird","has coivd-21","2",qorya);
+        Pet kush2 = new Pet("papagan2","papagn01","bird","has coivd-22","2",qorya);
 
 
         userRepository.save(user1);

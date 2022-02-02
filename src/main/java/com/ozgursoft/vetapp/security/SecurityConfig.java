@@ -43,7 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/api**","/api/users/register","/api/users/login")
+                .antMatchers("/api**","/api/users/register","/api/users/login","/**/favicon.ico", "/css/**", "/js/**", "/images/**","/403")
                 .permitAll()
                 .and()
                 .authorizeRequests()
@@ -55,7 +55,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .loginPage("/users/login")
+                .defaultSuccessUrl("/dashboard", true)
                 .permitAll()
+                .and()
+                .exceptionHandling().accessDeniedPage("/403")
                 .and()
                 .logout()
                 .invalidateHttpSession(true)

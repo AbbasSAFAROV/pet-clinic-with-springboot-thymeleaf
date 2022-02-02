@@ -64,7 +64,7 @@
                                     <td th:text="${pet.getGenus()}"></td>
                                     <td th:text="${pet.getAge()}"></td>
                                     <td th:text="${pet.getOwner().getEmail()}"></td>
-                                    <td>
+                                    <td sec:authorize="hasAuthority('ADMIN')">
                                         <a class="btn btn-danger btn-circle" th:href="@{'/pets/delete/'+${pet.getId}}">
                                             <i class="fas fa-trash"></i>
                                         </a>
