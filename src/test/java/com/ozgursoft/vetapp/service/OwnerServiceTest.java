@@ -1,26 +1,56 @@
 package com.ozgursoft.vetapp.service;
 
+import com.ozgursoft.vetapp.entity.Owner;
 import com.ozgursoft.vetapp.model.dto.OwnerDto;
 import com.ozgursoft.vetapp.repository.OwnerRepository;
+import com.ozgursoft.vetapp.repository.PetRepository;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.modelmapper.ModelMapper;
 
+import java.util.Arrays;
 import java.util.List;
 
+import static net.bytebuddy.matcher.ElementMatchers.any;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
 
 
-@SpringBootTest
 class OwnerServiceTest {
 
-    @Autowired
-    private OwnerService ownerService;
-    private OwnerRepository ownerRepository;
+    @Mock
+    OwnerRepository ownerRepository;
 
-    @Test
-    List<OwnerDto> getAllOwners(){
-        return ownerService.getAllOwners();
+    @Mock
+    PetRepository petRepository;
+
+    @Mock
+    ModelMapper modelMapper;
+
+    @InjectMocks
+    OwnerService ownerService;
+
+    @BeforeEach
+    public void setUp(){
+        MockitoAnnotations.openMocks(this);
+
+        when(ownerService.getAllOwners()).thenReturn(prepareOwnerDtos());
     }
+  @Test
+    public void testGetAllOwners(){
+        assertEquals(ownerService.getAllOwners().size(),2);
+        assertEquals(ownerService.getAllOwners().get(0).getEmail(), "test");
+        assertEquals(ownerService.getAllOwners().get(1).getNameSurname(), "test2");
+
+    }
+
+
+    private List<OwnerDto> prepareOwnerDtos(){
+        return Arrays.asList(OwnerDto.builder().id(1L).email("test").build(), OwnerDto.builder().id(2L).nameSurname("test2").build());
+    }
+
 
 }
