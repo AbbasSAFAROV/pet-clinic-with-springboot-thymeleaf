@@ -48,8 +48,18 @@ public class MainController {
     }
 
     @GetMapping("/403")
-    public String access(){
+    public String accessdenied(){
         return "403";
+    }
+
+    @GetMapping("/404")
+    public String notfound(){
+        return "404";
+    }
+
+    @GetMapping("/error")
+    public String error(){
+        return "error";
     }
 
 }
