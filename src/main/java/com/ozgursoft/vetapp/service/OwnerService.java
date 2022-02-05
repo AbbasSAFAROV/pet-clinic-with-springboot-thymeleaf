@@ -30,7 +30,9 @@ public class OwnerService {
         return ownerRepository.findAll().stream().map(owner->modelMapper.map(owner, OwnerDto.class)).collect(Collectors.toList());
     }
 
-
+    public List<Owner> allOwners(){
+        return ownerRepository.findAll();
+    }
 
     public OwnerDto createOwner(OwnerCreateRequest request){
         Owner owner = modelMapper.map(request,Owner.class);
