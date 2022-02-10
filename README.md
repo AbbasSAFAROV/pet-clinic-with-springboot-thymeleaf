@@ -9,7 +9,8 @@ if the relevant records are found.
 
 Tech Stack:
 
-* [Spring Boot](#)   * * *  [Spring DataJpa](#)
+* [Spring Boot](#)  
+* [Spring DataJpa](#)
 * [Spring Security](#)
 * [Thymeleaf](#)
 * [H2 Database](#)
