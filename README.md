@@ -23,7 +23,7 @@ Tech Stack:
 
 We can run two different ways:
 
-###with Docker
+### with Docker
 
 1. go to this github adress git clone https://github.com/AbbasSAFAROV/pet-clinic-with-springboot-thymeleaf
 2. docker build -t [tagName:version] [dockerfilePath] .
@@ -33,7 +33,7 @@ We can run two different ways:
 
 
 
-###with Maven
+### with Maven
 
 1. go to this github adress git clone https://github.com/AbbasSAFAROV/pet-clinic-with-springboot-thymeleaf
 2. mvn clean install
