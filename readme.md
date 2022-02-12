@@ -1,4 +1,4 @@
-# Spring PetClinic App.
+# Pet Clinic Application using Spring Boot 
 
 ### About the project
 
@@ -9,15 +9,9 @@ if the relevant records are found.
 
 Tech Stack:
 
-* [Spring Boot](#)  
-* [Spring DataJpa](#)
-* [Spring Security](#)
-* [Thymeleaf](#)
-* [H2 Database](#)
-* [Docker](#)
-* [Git](#)
-* [JUnit5](#)
-* [Java 11](#)
+* [Spring Boot](#) - [JPA / Hibernate](#) - [Spring Security](#)
+* [Thymeleaf](#) - [H2 Database](#) - [Docker](#)
+* [Git](#) - [JUnit5](#) - [Java 11](#)
 
 ### Project run
 

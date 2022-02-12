@@ -1,7 +1,6 @@
 package com.ozgursoft.vetapp.service;
 
 import com.ozgursoft.vetapp.entity.Owner;
-import com.ozgursoft.vetapp.model.dto.OwnerDto;
 import com.ozgursoft.vetapp.repository.OwnerRepository;
 import com.ozgursoft.vetapp.repository.PetRepository;
 import org.junit.jupiter.api.BeforeEach;
