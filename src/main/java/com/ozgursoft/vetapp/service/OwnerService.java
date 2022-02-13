@@ -17,17 +17,18 @@ import java.util.stream.Collectors;
 public class OwnerService {
 
     private final OwnerRepository ownerRepository;
-    private final PetRepository petRepository;
     private final ModelMapper modelMapper;
 
-    public OwnerService(OwnerRepository ownerRepository, PetRepository petRepository, ModelMapper modelMapper) {
+    public OwnerService(OwnerRepository ownerRepository, ModelMapper modelMapper) {
         this.ownerRepository = ownerRepository;
-        this.petRepository = petRepository;
         this.modelMapper = modelMapper;
     }
 
     public List<OwnerDto> getAllOwners(){
-        return ownerRepository.findAll().stream().map(owner->modelMapper.map(owner, OwnerDto.class)).collect(Collectors.toList());
+
+        List<Owner> ownerList = ownerRepository.findAll();
+        return ownerList.stream().map(owner->modelMapper.map(owner,OwnerDto.class)).collect(Collectors.toList());
+
     }
 
     public List<Owner> allOwners(){

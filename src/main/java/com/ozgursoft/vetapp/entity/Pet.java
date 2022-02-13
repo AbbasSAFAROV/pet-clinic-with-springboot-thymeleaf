@@ -37,4 +37,13 @@ public class Pet {
         this.age = age;
         this.owner = owner;
     }
+
+    public Pet(Long id, String name, String type, String genus, String description, String age) {
+        this.id = id;
+        this.name = name;
+        this.type = type;
+        this.genus = genus;
+        this.description = description;
+        this.age = age;
+    }
 }

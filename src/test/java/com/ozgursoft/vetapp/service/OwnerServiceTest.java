@@ -1,54 +1,88 @@
 package com.ozgursoft.vetapp.service;
 
 import com.ozgursoft.vetapp.entity.Owner;
+import com.ozgursoft.vetapp.entity.Pet;
+import com.ozgursoft.vetapp.model.dto.OwnerDto;
 import com.ozgursoft.vetapp.repository.OwnerRepository;
-import com.ozgursoft.vetapp.repository.PetRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.modelmapper.ModelMapper;
 
-import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
+class OwnerServiceTest extends TestSupport{
 
-class OwnerServiceTest {
+    private OwnerRepository repository;
+    private ModelMapper mapper;
 
-    @Mock
-    OwnerRepository ownerRepository;
-
-    @Mock
-    PetRepository petRepository;
-
-    @Mock
-    ModelMapper modelMapper;
-
-    @InjectMocks
-    OwnerService ownerService;
+    private OwnerService service;
 
     @BeforeEach
-    public void setUp(){
-        MockitoAnnotations.openMocks(this);
+    void setUp() {
 
-        when(ownerService.allOwners()).thenReturn(prepareOwnerDtos());
-    }
-  @Test
-    public void testGetAllOwners(){
-        assertEquals(ownerService.getAllOwners().size(),2);
-        //assertEquals(ownerService.getAllOwners().get(0).getEmail(), "test");
-        //assertEquals(ownerService.getAllOwners().get(1).getNameSurname(), "test2");
+        repository = mock(OwnerRepository.class);
+        mapper = mock(ModelMapper.class);
 
+        service = new OwnerService(repository,mapper);
     }
 
+    @Test
+    void test_getAllOwners() {
+        // 1.veri hazırlama
+        List<Owner> ownerList = generateListOwner();
+        List<OwnerDto> ownerDtoList = generateListOwnerDto();
+        // 2. ...
+        when(repository.findAll()).thenReturn(ownerList);
+        when(ownerList.stream().map(x->mapper.map(x,OwnerDto.class)).collect(Collectors.toList())).thenReturn(ownerDtoList);
 
-    private List<Owner> prepareOwnerDtos(){
-        return Arrays.asList(Owner.builder().id(1L).email("test").build(), Owner.builder().id(2L).nameSurname("test2").build());
+        List<OwnerDto> result = service.getAllOwners();
+
+        assertEquals(result,ownerDtoList);
+
+        verify(repository).findAll();
+        verifyNoInteractions(mapper);
+
     }
 
+    @Test
+    void test_allOwners() {
 
+        List<Owner> ownerList = generateListOwner();
+
+        when(repository.findAll()).thenReturn(ownerList);
+
+        List<Owner> result = service.allOwners();
+
+        assertEquals(result,ownerList);
+        verify(repository).findAll();
+
+    }
+
+    @Test
+    void createOwner() {
+    }
+
+    @Test
+    void updateOwner() {
+    }
+
+    @Test
+    void deleteOwnerById() {
+    }
+
+    @Test
+    void getOwnerById() {
+    }
+
+    @Test
+    void findOwnerById() {
+    }
+
+    @Test
+    void getOwnerByNameAndSurname() {
+    }
 }
