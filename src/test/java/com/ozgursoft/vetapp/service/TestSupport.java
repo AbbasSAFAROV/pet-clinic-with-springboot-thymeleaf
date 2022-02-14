@@ -4,7 +4,9 @@ import com.ozgursoft.vetapp.entity.Owner;
 import com.ozgursoft.vetapp.entity.Pet;
 import com.ozgursoft.vetapp.model.dto.OwnerDto;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class TestSupport {
@@ -30,10 +32,10 @@ public class TestSupport {
     }
 
     public List<Owner> generateListOwner(){
-        return List.of(generateOwner());
+        return Arrays.asList(generateOwner());
     }
     public List<OwnerDto> generateListOwnerDto(){
-        return List.of(generateOwnerDto());
+        return Arrays.asList(generateOwnerDto());
     }
 
 }
