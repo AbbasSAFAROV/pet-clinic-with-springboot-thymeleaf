@@ -17,6 +17,15 @@ Tech Stack:
 
 We can run two different ways:
 
+Login Info:
+For admin
+* Username: admin
+* Password: 123
+* 
+For user
+* Username: user
+* Password: 123
+
 ### with Docker
 
 1. go to this github adress git clone https://github.com/AbbasSAFAROV/pet-clinic-with-springboot-thymeleaf
