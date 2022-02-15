@@ -40,7 +40,7 @@ For user
 
 1. go to this github adress git clone https://github.com/AbbasSAFAROV/pet-clinic-with-springboot-thymeleaf
 2. mvn clean install
-3. mvn springboot:run
+3. mvn springboot:run 
 
 > `http://localhost:80` will run that port
 
