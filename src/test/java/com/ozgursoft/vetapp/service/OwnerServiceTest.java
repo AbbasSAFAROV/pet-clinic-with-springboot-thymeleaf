@@ -37,7 +37,7 @@ class OwnerServiceTest extends TestSupport{
         List<OwnerDto> ownerDtoList = generateListOwnerDto();
         // 2. ...
         when(repository.findAll()).thenReturn(ownerList);
-        when(ownerList.stream().map(x->mapper.map(x,OwnerDto.class)).collect(Collectors.toList())).thenReturn(ownerDtoList);
+        //when(ownerList).thenReturn(ownerDtoList);
 
         List<OwnerDto> result = service.getAllOwners();
 
