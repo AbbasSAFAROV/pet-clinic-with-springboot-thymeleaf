@@ -1,11 +1,9 @@
 package com.ozgursoft.vetapp.service;
 
 import com.ozgursoft.vetapp.entity.Owner;
-import com.ozgursoft.vetapp.entity.Pet;
 import com.ozgursoft.vetapp.model.dto.OwnerDto;
+import com.ozgursoft.vetapp.model.request.OwnerCreateRequest;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -28,6 +26,15 @@ public class TestSupport {
                 .email("test@mail.com")
                 .contact("test-contact")
                 .phone("test")
+                .build();
+    }
+
+    public OwnerCreateRequest generateOwnerCreateRequest(){
+        return OwnerCreateRequest.builder()
+                .nameSurname("test")
+                .contact("test")
+                .email("test@mail.com")
+                .phone("11111")
                 .build();
     }
 

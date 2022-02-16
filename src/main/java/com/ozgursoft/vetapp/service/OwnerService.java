@@ -1,12 +1,12 @@
 package com.ozgursoft.vetapp.service;
 
 
+import com.ozgursoft.vetapp.config.Converter;
 import com.ozgursoft.vetapp.entity.Owner;
 import com.ozgursoft.vetapp.exception.OwnerNotFoundException;
 import com.ozgursoft.vetapp.model.dto.OwnerDto;
 import com.ozgursoft.vetapp.model.request.OwnerCreateRequest;
 import com.ozgursoft.vetapp.repository.OwnerRepository;
-import com.ozgursoft.vetapp.repository.PetRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -18,26 +18,30 @@ public class OwnerService {
 
     private final OwnerRepository ownerRepository;
     private final ModelMapper modelMapper;
+    private final Converter converter;
 
-    public OwnerService(OwnerRepository ownerRepository, ModelMapper modelMapper) {
+    public OwnerService(OwnerRepository ownerRepository, ModelMapper modelMapper, Converter converter) {
         this.ownerRepository = ownerRepository;
         this.modelMapper = modelMapper;
+        this.converter = converter;
     }
 
     public List<OwnerDto> getAllOwners(){
-
         List<Owner> ownerList = ownerRepository.findAll();
-        return ownerList.stream().map(owner->modelMapper.map(owner,OwnerDto.class)).collect(Collectors.toList());
+        return converter.toOwnerDtoList(ownerList);
 
-    }
-
-    public List<Owner> allOwners(){
-        return ownerRepository.findAll();
     }
 
     public OwnerDto createOwner(OwnerCreateRequest request){
-        Owner owner = modelMapper.map(request,Owner.class);
-        return modelMapper.map(ownerRepository.save(owner),OwnerDto.class);
+        Owner owner = Owner.builder()
+                .nameSurname(request.getNameSurname())
+                .email(request.getEmail())
+                .phone(request.getPhone())
+                .contact(request.getContact())
+                .build();
+        Owner saveOwner = ownerRepository.save(owner);
+        OwnerDto ownerDto = converter.toOwnerDto(saveOwner);
+        return ownerDto;
     }
 
     public OwnerDto updateOwner(OwnerCreateRequest request,Long id){
