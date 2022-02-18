@@ -41,4 +41,12 @@ public class Owner {
         this.email = email;
         this.contact = contact;
     }
+
+    public Owner(String nameSurname, String phone, String email, String contact) {
+        this.nameSurname = nameSurname;
+        this.phone = phone;
+        this.email = email;
+        this.contact = contact;
+    }
+
 }

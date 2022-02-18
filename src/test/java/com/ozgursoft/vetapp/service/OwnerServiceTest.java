@@ -73,6 +73,31 @@ class OwnerServiceTest extends TestSupport{
     }
 
     @Test
+    void createTest() {
+
+        //OwnerCreateRequest request = generateOwnerCreateRequest();
+        Owner owner = Owner.builder()
+                .nameSurname("test")
+                .contact("test")
+                .email("test")
+                .phone("010101")
+                .build();
+        OwnerCreateRequest request = generateOwnerCreateRequest();
+        //OwnerDto ownerDto = generateOwnerDto();
+
+        when(repository.save(owner)).thenReturn(owner);
+        //when(converter.toOwnerDto(owner)).thenReturn(ownerDto);
+
+        Owner result = service.create(request);
+
+        assertEquals(result,owner);
+
+        verify(repository).save(owner);
+        verifyNoInteractions(converter);
+
+    }
+
+    @Test
     void updateOwner() {
     }
 

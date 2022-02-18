@@ -3,6 +3,7 @@ package com.ozgursoft.vetapp.service;
 
 import com.ozgursoft.vetapp.config.Converter;
 import com.ozgursoft.vetapp.entity.Owner;
+import com.ozgursoft.vetapp.entity.Pet;
 import com.ozgursoft.vetapp.exception.OwnerNotFoundException;
 import com.ozgursoft.vetapp.model.dto.OwnerDto;
 import com.ozgursoft.vetapp.model.request.OwnerCreateRequest;
@@ -10,6 +11,7 @@ import com.ozgursoft.vetapp.repository.OwnerRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -42,6 +44,12 @@ public class OwnerService {
         Owner saveOwner = ownerRepository.save(owner);
         OwnerDto ownerDto = converter.toOwnerDto(saveOwner);
         return ownerDto;
+    }
+
+    public Owner create(OwnerCreateRequest request){
+        Owner owner = new Owner(request.getNameSurname(),request.getPhone(), request.getEmail(), request.getContact());
+        Owner owner1 = ownerRepository.save(owner);
+        return owner1;
     }
 
     public OwnerDto updateOwner(OwnerCreateRequest request,Long id){
