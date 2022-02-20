@@ -14,13 +14,7 @@ import java.util.stream.Collectors;
 public class Converter {
 
     public OwnerDto toOwnerDto(Owner owner){
-        return OwnerDto.builder()
-                .id(owner.getId())
-                .nameSurname(owner.getNameSurname())
-                .contact(owner.getContact())
-                .email(owner.getEmail())
-                .phone(owner.getPhone())
-                .build();
+        return new OwnerDto(owner.getId(), owner.getNameSurname(), owner.getPhone(), owner.getEmail(), owner.getContact(),owner.getPets());
     }
 
     public Owner toOwnerEntity(OwnerCreateRequest request){

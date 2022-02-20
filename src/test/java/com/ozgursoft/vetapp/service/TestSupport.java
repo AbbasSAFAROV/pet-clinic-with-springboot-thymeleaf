@@ -10,13 +10,7 @@ import java.util.List;
 public class TestSupport {
 
     public Owner generateOwner(){
-        return Owner.builder()
-                .id(1L)
-                .nameSurname("test")
-                .email("test@mail.com")
-                .contact("test-contact")
-                .phone("test")
-                .build();
+        return new Owner("test","010101","test@test.com","test");
     }
 
     public OwnerDto generateOwnerDto(){
@@ -30,12 +24,11 @@ public class TestSupport {
     }
 
     public OwnerCreateRequest generateOwnerCreateRequest(){
-        return OwnerCreateRequest.builder()
-                .nameSurname("test")
-                .contact("test-contact")
-                .email("test@mail.com")
-                .phone("11111")
-                .build();
+        return new OwnerCreateRequest("test","010101","test@test.com","test");
+    }
+
+    public Owner generateOwnerUpdatedRequest(Owner owner, OwnerCreateRequest request){
+        return new Owner(owner.getId(), request.getNameSurname(), owner.getPhone(), owner.getEmail(), owner.getContact());
     }
 
     public List<Owner> generateListOwner(){

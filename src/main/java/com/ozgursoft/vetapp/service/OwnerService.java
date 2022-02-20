@@ -35,38 +35,18 @@ public class OwnerService {
     }
 
     public OwnerDto createOwner(OwnerCreateRequest request){
-        Owner owner = Owner.builder()
-                .nameSurname(request.getNameSurname())
-                .email(request.getEmail())
-                .phone(request.getPhone())
-                .contact(request.getContact())
-                .build();
-        Owner saveOwner = ownerRepository.save(owner);
-        OwnerDto ownerDto = converter.toOwnerDto(saveOwner);
-        return ownerDto;
-    }
-
-    public Owner create(OwnerCreateRequest request){
-        Owner owner = new Owner();
-        owner.setId(100L);
-        owner.setNameSurname(request.getNameSurname());
-        owner.setContact(request.getContact());
-        owner.setPhone(request.getPhone());
-        owner.setEmail(request.getEmail());
-        Owner owner1 = ownerRepository.save(owner);
-        return owner1;
+        Owner owner = new Owner(request.getNameSurname(), request.getPhone(), request.getEmail(), request.getContact());
+        return converter.toOwnerDto(ownerRepository.save(owner));
     }
 
     public OwnerDto updateOwner(OwnerCreateRequest request,Long id){
 
         Owner existingOwner = findOwnerById(id);
-        Owner updatedOwner = new Owner();
-        updatedOwner.setId(existingOwner.getId());
-        updatedOwner.setNameSurname(request.getNameSurname());
-        updatedOwner.setEmail(request.getEmail());
-        updatedOwner.setPhone(request.getPhone());
-        updatedOwner.setContact(request.getContact());
-        return modelMapper.map(ownerRepository.save(updatedOwner),OwnerDto.class);
+        Owner updatedOwner = new Owner(existingOwner.getId(), request.getNameSurname(), request.getPhone(), request.getEmail(), request.getContact());
+
+        OwnerDto updatedOwnerDto = converter.toOwnerDto(ownerRepository.save(updatedOwner));
+
+        return updatedOwnerDto;
 
     }
 
