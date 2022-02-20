@@ -32,7 +32,7 @@ public class TestSupport {
     public OwnerCreateRequest generateOwnerCreateRequest(){
         return OwnerCreateRequest.builder()
                 .nameSurname("test")
-                .contact("test")
+                .contact("test-contact")
                 .email("test@mail.com")
                 .phone("11111")
                 .build();

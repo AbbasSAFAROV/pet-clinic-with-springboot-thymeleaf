@@ -11,7 +11,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class OwnerCreateRequest {
-
     private String nameSurname;
     private String phone;
     private String email;
