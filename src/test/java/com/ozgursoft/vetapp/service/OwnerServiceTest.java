@@ -6,6 +6,7 @@ import com.ozgursoft.vetapp.exception.OwnerNotFoundException;
 import com.ozgursoft.vetapp.model.dto.OwnerDto;
 import com.ozgursoft.vetapp.model.request.OwnerCreateRequest;
 import com.ozgursoft.vetapp.repository.OwnerRepository;
+import com.ozgursoft.vetapp.service.testSupports.OwnerTestSupport;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.modelmapper.ModelMapper;
@@ -16,7 +17,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-class OwnerServiceTest extends TestSupport{
+class OwnerServiceTest extends OwnerTestSupport {
 
     private OwnerRepository repository;
     private ModelMapper mapper;

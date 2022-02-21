@@ -1,4 +1,4 @@
-package com.ozgursoft.vetapp.service;
+package com.ozgursoft.vetapp.service.testSupports;
 
 import com.ozgursoft.vetapp.entity.Owner;
 import com.ozgursoft.vetapp.model.dto.OwnerDto;
@@ -7,7 +7,7 @@ import com.ozgursoft.vetapp.model.request.OwnerCreateRequest;
 import java.util.Arrays;
 import java.util.List;
 
-public class TestSupport {
+public class OwnerTestSupport {
 
     public Owner generateOwner(){
         return new Owner("test","010101","test@test.com","test");

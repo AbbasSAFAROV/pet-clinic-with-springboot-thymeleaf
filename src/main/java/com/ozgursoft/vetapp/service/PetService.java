@@ -1,40 +1,37 @@
 package com.ozgursoft.vetapp.service;
 
 
+import com.ozgursoft.vetapp.config.Converter;
 import com.ozgursoft.vetapp.entity.Owner;
 import com.ozgursoft.vetapp.entity.Pet;
-import com.ozgursoft.vetapp.exception.OwnerNotFoundException;
 import com.ozgursoft.vetapp.exception.PetNotFoundException;
 import com.ozgursoft.vetapp.model.dto.PetDto;
 import com.ozgursoft.vetapp.model.request.PetCreateRequest;
-import com.ozgursoft.vetapp.repository.OwnerRepository;
 import com.ozgursoft.vetapp.repository.PetRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class PetService {
 
     private final PetRepository petRepository;
     private final OwnerService ownerService;
-    private final OwnerRepository repository;
     private final ModelMapper modelMapper;
+    private final Converter converter;
 
 
-    public PetService(PetRepository petRepository, OwnerService service, OwnerRepository repository, ModelMapper modelMapper) {
+
+    public PetService(PetRepository petRepository, OwnerService service, ModelMapper modelMapper, Converter converter) {
         this.petRepository = petRepository;
         this.ownerService = service;
-        this.repository = repository;
         this.modelMapper = modelMapper;
+        this.converter = converter;
     }
 
     public List<PetDto> getAllPets(){
-
-        return petRepository.findAll().stream().map(pet->modelMapper.map(pet,PetDto.class)).collect(Collectors.toList());
-
+        return converter.toPetDtoList(petRepository.findAll());
     }
 
     public List<Pet> findAllPets(){
@@ -44,7 +41,9 @@ public class PetService {
     public PetDto createPet(PetCreateRequest request){
         Owner owner = ownerService.findOwnerById(request.getOwnerId());
         Pet pet = new Pet(request.getName(), request.getType(), request.getGenus(), request.getDescription(), request.getAge(), owner);
-        return modelMapper.map(petRepository.save(pet),PetDto.class);
+        Pet savedPet = petRepository.save(pet);
+        PetDto petDto = converter.toPetDto(savedPet);
+        return petDto;
     }
 
     public PetDto updatePet(PetCreateRequest request,Long id){
@@ -59,7 +58,7 @@ public class PetService {
                 .genus(request.getGenus())
                 .type(request.getType())
                 .build();
-        return modelMapper.map(petRepository.save(updatedPet),PetDto.class);
+        return converter.toPetDto(petRepository.save(updatedPet));
 
     }
 

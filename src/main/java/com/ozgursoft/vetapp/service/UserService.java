@@ -1,7 +1,7 @@
 package com.ozgursoft.vetapp.service;
 
 
-import com.ozgursoft.vetapp.entity.Pet;
+import com.ozgursoft.vetapp.config.Converter;
 import com.ozgursoft.vetapp.entity.Role;
 import com.ozgursoft.vetapp.entity.User;
 import com.ozgursoft.vetapp.exception.UserNotFoundException;
@@ -30,16 +30,18 @@ public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder encoder;
+    private final Converter converter;
     private final ModelMapper modelMapper;
 
-    public UserService(UserRepository userRepository, BCryptPasswordEncoder encoder, ModelMapper modelMapper) {
+    public UserService(UserRepository userRepository, BCryptPasswordEncoder encoder, Converter converter, ModelMapper modelMapper) {
         this.userRepository = userRepository;
         this.encoder = encoder;
+        this.converter = converter;
         this.modelMapper = modelMapper;
     }
 
     public List<UserDto> getAllUsers(){
-        return userRepository.findAll().stream().map(user->modelMapper.map(user,UserDto.class)).collect(Collectors.toList());
+        return converter.toUserDtosList(userRepository.findAll());
     }
 
     public UserDto createUser(UserCreateRequest request){
