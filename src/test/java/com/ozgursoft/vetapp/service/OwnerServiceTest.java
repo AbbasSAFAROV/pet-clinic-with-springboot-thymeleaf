@@ -2,8 +2,8 @@ package com.ozgursoft.vetapp.service;
 
 import com.ozgursoft.vetapp.config.Converter;
 import com.ozgursoft.vetapp.entity.Owner;
+import com.ozgursoft.vetapp.exception.OwnerNotFoundException;
 import com.ozgursoft.vetapp.model.dto.OwnerDto;
-import com.ozgursoft.vetapp.model.dto.UserDto;
 import com.ozgursoft.vetapp.model.request.OwnerCreateRequest;
 import com.ozgursoft.vetapp.repository.OwnerRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -72,7 +72,7 @@ class OwnerServiceTest extends TestSupport{
     }
 
     @Test
-    void testUpdateOwner_whenCalledValidRequest_shouldReturnOwnerDto() {
+    void testUpdateOwner_whenCalledValidRequest_itShouldReturnOwnerDto() {
 
         OwnerCreateRequest request = generateOwnerCreateRequest();
         OwnerDto ownerDto = generateOwnerDto();
@@ -94,6 +94,20 @@ class OwnerServiceTest extends TestSupport{
     }
 
     @Test
+    void testUpdateOwner_whenCalledWithInvalidRequest_itShouldReturnOwnerDto() {
+
+        OwnerCreateRequest request = generateOwnerCreateRequest();
+
+        when(repository.findById(anyLong())).thenThrow(OwnerNotFoundException.class);
+
+        assertThrows(OwnerNotFoundException.class,()->service.updateOwner(request,anyLong()));
+
+        verify(repository).findById(anyLong());
+        verifyNoInteractions(converter);
+
+    }
+
+    @Test
     void testDeleteOwnerById_whenCalledWithValidId_itShouldReturnString() {
 
         Owner owner = generateOwner();
@@ -109,11 +123,70 @@ class OwnerServiceTest extends TestSupport{
     }
 
     @Test
-    void getOwnerById() {
+    void testDeleteOwnerById_whenCalledWithInvalidId_itShouldThrowNotFoundException() {
+
+        when(repository.findById(anyLong())).thenThrow(OwnerNotFoundException.class);
+
+        assertThrows(OwnerNotFoundException.class,()->service.deleteOwnerById(anyLong()));
+
+        verify(repository).findById(anyLong());
+        verifyNoInteractions(converter);
+
     }
 
     @Test
-    void findOwnerById() {
+    void testGetOwnerById_whenCalledWithExistId_itShouldReturnOwnerDto() {
+
+        Owner owner = generateOwner();
+        OwnerDto ownerDto = generateOwnerDto();
+
+        when(repository.findById(anyLong())).thenReturn(Optional.of(owner));
+        when(converter.toOwnerDto(owner)).thenReturn(ownerDto);
+
+        OwnerDto result = service.getOwnerById(1L);
+
+        assertEquals(result,ownerDto);
+
+        verify(repository).findById(1L);
+        verify(converter).toOwnerDto(owner);
+
+    }
+
+    @Test
+    void testGetOwnerById_whenCalledWithInvalidId_itShouldThrowNotFoundException() {
+
+        when(repository.findById(anyLong())).thenThrow(OwnerNotFoundException.class);
+
+        assertThrows(OwnerNotFoundException.class,()->service.getOwnerById(anyLong()));
+
+        verify(repository).findById(anyLong());
+        verifyNoInteractions(converter);
+
+    }
+
+    @Test
+    void testFindOwnerById_whenCalledWithExistId_itShouldReturnOwner() {
+
+        Owner owner = generateOwner();
+
+        when(repository.findById(anyLong())).thenReturn(Optional.of(owner));
+
+        Owner result = service.findOwnerById(anyLong());
+
+        assertEquals(result,owner);
+
+        verify(repository).findById(anyLong());
+
+    }
+
+    @Test
+    void testFindOwnerById_whenCalledWithInvalidId_itShouldThrowException() {
+
+        when(repository.findById(anyLong())).thenThrow(OwnerNotFoundException.class);
+        assertThrows(OwnerNotFoundException.class,()->service.findOwnerById(anyLong()));
+
+        verify(repository).findById(anyLong());
+        verifyNoInteractions(converter);
     }
 
     @Test

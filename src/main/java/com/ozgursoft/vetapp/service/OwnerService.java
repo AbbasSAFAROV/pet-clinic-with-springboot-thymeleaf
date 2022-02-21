@@ -56,7 +56,7 @@ public class OwnerService {
     }
 
     public OwnerDto getOwnerById(Long id){
-        return modelMapper.map(findOwnerById(id),OwnerDto.class);
+        return converter.toOwnerDto(findOwnerById(id));
     }
 
     public Owner findOwnerById(Long id){
