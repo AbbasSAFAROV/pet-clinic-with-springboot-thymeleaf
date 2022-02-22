@@ -62,11 +62,11 @@ class PetServiceTest extends PetTestSupport {
     void testCreatePet_whenCalledValidRequest_isShouldReturnPetDto() {
 
         Owner owner = generateOwner();
-        Pet pet =  new Pet("test","test-type","test-genus","test-desc","age",owner);
+        Pet pet =  generatePet();
         PetDto petDto = generatePetDto();
         PetCreateRequest request = generatePetCreateRequest();
 
-        when(ownerService.findOwnerById(1L)).thenReturn(owner);
+        when(ownerService.findOwnerById(request.getOwnerId())).thenReturn(owner);
         when(repository.save(pet)).thenReturn(pet);
         when(converter.toPetDto(pet)).thenReturn(petDto);
 
