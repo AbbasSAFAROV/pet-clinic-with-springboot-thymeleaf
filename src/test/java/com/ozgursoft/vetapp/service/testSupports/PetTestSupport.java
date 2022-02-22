@@ -14,6 +14,15 @@ public class PetTestSupport extends OwnerTestSupport{
         return new Pet("test","test-type","test-genus","test-desc","age",generateOwner());
     }
 
+    public Pet generatePetWithBuilder(){
+        return Pet.builder()
+                .type("test")
+                .genus("test")
+                .age("12")
+                .description("test")
+                .build();
+    }
+
     public PetDto generatePetDto(){
         return new PetDto(101L,"test","test-type","test-genus","test-desc","age","1");
     }
