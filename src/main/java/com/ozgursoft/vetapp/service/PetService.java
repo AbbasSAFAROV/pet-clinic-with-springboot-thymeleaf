@@ -58,6 +58,7 @@ public class PetService {
                 .genus(request.getGenus())
                 .type(request.getType())
                 .build();
+
         return converter.toPetDto(petRepository.save(updatedPet));
 
     }

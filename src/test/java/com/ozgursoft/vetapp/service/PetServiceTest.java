@@ -9,7 +9,6 @@ import com.ozgursoft.vetapp.repository.PetRepository;
 import com.ozgursoft.vetapp.service.testSupports.PetTestSupport;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.modelmapper.ModelMapper;
 
 import java.util.List;
@@ -64,6 +63,7 @@ class PetServiceTest extends PetTestSupport {
         Owner owner = generateOwner();
         Pet pet =  generatePet();
         Pet pe1 = new Pet();
+        Pet pe2 = new Pet(200L,"test","test","test","test","12", generateOwner());
         PetDto petDto = generatePetDto();
         PetCreateRequest request = generatePetCreateRequest();
 
