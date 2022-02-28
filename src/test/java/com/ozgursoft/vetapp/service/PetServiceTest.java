@@ -62,8 +62,8 @@ class PetServiceTest extends PetTestSupport {
 
         Owner owner = generateOwner();
         Pet pet =  generatePet();
-        Pet pe1 = new Pet();
-        Pet pe2 = new Pet(200L,"test","test","test","test","12", generateOwner());
+
+        //Pet pe2 = new Pet(200L,"test","test","test","test","12", generateOwner());
         PetDto petDto = generatePetDto();
         PetCreateRequest request = generatePetCreateRequest();
 
