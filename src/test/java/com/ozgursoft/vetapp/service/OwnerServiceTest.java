@@ -78,6 +78,7 @@ class OwnerServiceTest extends OwnerTestSupport {
         OwnerCreateRequest request = generateOwnerCreateRequest();
         OwnerDto ownerDto = generateOwnerDto();
         Owner owner = generateOwner();
+        Owner owner1 = generateOwner();
         Owner updatedOwner = generateOwnerUpdatedRequest(owner,request);
 
         when(repository.findById(1L)).thenReturn(Optional.of(owner));
