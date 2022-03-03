@@ -91,6 +91,7 @@ class OwnerServiceTest extends OwnerTestSupport {
 
         verify(repository).findById(1L);
         verify(repository).save(updatedOwner);
+        //verify(repository).save(updatedOwner);
         verify(converter).toOwnerDto(updatedOwner);
 
     }
