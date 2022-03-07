@@ -19,12 +19,10 @@ import java.util.stream.Collectors;
 public class OwnerService {
 
     private final OwnerRepository ownerRepository;
-    private final ModelMapper modelMapper;
     private final Converter converter;
 
-    public OwnerService(OwnerRepository ownerRepository, ModelMapper modelMapper, Converter converter) {
+    public OwnerService(OwnerRepository ownerRepository, Converter converter) {
         this.ownerRepository = ownerRepository;
-        this.modelMapper = modelMapper;
         this.converter = converter;
     }
 

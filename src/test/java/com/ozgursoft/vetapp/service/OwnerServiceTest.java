@@ -30,7 +30,7 @@ class OwnerServiceTest extends OwnerTestSupport {
         converter = mock(Converter.class);
         mapper = mock(ModelMapper.class);
 
-        service = new OwnerService(repository,mapper, converter);
+        service = new OwnerService(repository, converter);
     }
 
     @Test

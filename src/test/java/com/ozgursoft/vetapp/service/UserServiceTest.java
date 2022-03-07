@@ -58,7 +58,7 @@ class UserServiceTest extends UserTestSupport {
 
     }
 
-    @Test
+    /*@Test
     void testCreateUser_whenValidUserCreateDto_itShouldReturnUserDto() {
 
         User user = generateUser();
@@ -75,7 +75,7 @@ class UserServiceTest extends UserTestSupport {
         verify(userRepository).save(user);
         verify(converter).toUserDto(user);
 
-    }
+    }*/
 
     @Test
     void updateUser() {

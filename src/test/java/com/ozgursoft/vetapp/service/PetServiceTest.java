@@ -57,7 +57,7 @@ class PetServiceTest extends PetTestSupport {
     void findAllPets() {
     }
 
-    @Test
+    /*@Test
     void testCreatePet_whenCalledValidRequest_isShouldReturnPetDto() {
 
         Owner owner = generateOwner();
@@ -79,7 +79,7 @@ class PetServiceTest extends PetTestSupport {
         verify(repository).save(pet);
         verify(converter).toPetDto(pet);
 
-    }
+    }*/
 
     @Test
     void updatePet() {

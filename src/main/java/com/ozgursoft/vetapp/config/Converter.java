@@ -18,11 +18,7 @@ import java.util.stream.Collectors;
 @Component
 public class Converter {
 
-    private final OwnerService service;
 
-    public Converter(OwnerService service) {
-        this.service = service;
-    }
 
     public OwnerDto toOwnerDto(Owner owner){
         return new OwnerDto(owner.getId(), owner.getNameSurname(), owner.getPhone(), owner.getEmail(), owner.getContact(),owner.getPets());
@@ -47,10 +43,6 @@ public class Converter {
         return new PetDto(pet.getId(), pet.getName(), pet.getType(), pet.getGenus(), pet.getDescription(), pet.getAge(), pet.getOwner().getId().toString());
     }
 
-    public Pet toPetEntity(PetCreateRequest request){
-        Owner owner = service.findOwnerById(request.getOwnerId());
-        return new Pet(request.getName(), request.getType(), request.getGenus(), request.getDescription(), request.getAge(),owner);
-    }
 
     public List<PetDto> toPetDtoList(List<Pet> pets){
         return pets.stream().map(this::toPetDto).collect(Collectors.toList());
