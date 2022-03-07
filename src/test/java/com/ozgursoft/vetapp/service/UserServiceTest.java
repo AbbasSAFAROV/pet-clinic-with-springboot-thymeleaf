@@ -3,6 +3,7 @@ package com.ozgursoft.vetapp.service;
 import com.ozgursoft.vetapp.config.Converter;
 import com.ozgursoft.vetapp.entity.User;
 import com.ozgursoft.vetapp.model.dto.UserDto;
+import com.ozgursoft.vetapp.model.request.UserCreateRequest;
 import com.ozgursoft.vetapp.repository.UserRepository;
 import com.ozgursoft.vetapp.service.testSupports.UserTestSupport;
 import org.junit.jupiter.api.BeforeEach;
@@ -58,7 +59,22 @@ class UserServiceTest extends UserTestSupport {
     }
 
     @Test
-    void createUser() {
+    void testCreateUser_whenValidUserCreateDto_itShouldReturnUserDto() {
+
+        User user = generateUser();
+        UserDto userDto = generateUserDto();
+        UserCreateRequest request = generateUserCreateRequest();
+
+        when(userRepository.save(any())).thenReturn(user);
+        when(converter.toUserDto(user)).thenReturn(userDto);
+
+        UserDto result = service.createUser(request);
+
+        assertEquals(result,userDto);
+
+        verify(userRepository).save(user);
+        verify(converter).toUserDto(user);
+
     }
 
     @Test

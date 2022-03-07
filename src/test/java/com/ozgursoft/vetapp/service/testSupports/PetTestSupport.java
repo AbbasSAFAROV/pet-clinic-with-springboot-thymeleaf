@@ -11,7 +11,7 @@ public class PetTestSupport extends OwnerTestSupport{
 
 
     public Pet generatePet(){
-        return new Pet("test","test-type","test-genus","test-desc","age",generateOwner());
+        return new Pet(null,"test","test-type","test-genus","test-desc","age",generateOwner());
     }
 
     public Pet generatePetWithBuilder(){

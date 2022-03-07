@@ -48,7 +48,7 @@ public class UserService implements UserDetailsService {
         //Role veterinary = new Role("USER");
         User user = new User(request.getName(), request.getLastName(), request.getUsername(),encoder.encode(request.getPassword()), request.getRoles());
         user.setRoles(Arrays.asList(new Role("USER")));
-        return modelMapper.map(userRepository.save(user),UserDto.class);
+        return converter.toUserDto(user);
     }
 
     public UserDto updateUser(UserCreateRequest request , Long id){
