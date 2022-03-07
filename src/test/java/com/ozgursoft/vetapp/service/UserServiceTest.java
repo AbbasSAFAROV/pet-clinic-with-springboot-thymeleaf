@@ -40,7 +40,7 @@ class UserServiceTest extends UserTestSupport {
     }
 
     @Test
-    void testGtAllUsers_itShouldReturnUserDtoList() {
+    void testGetAllUsers_itShouldReturnUserDtoList() {
 
         List<User> userList = generateUserList();
         List<UserDto> userDtoList = generateUserDtoList();
