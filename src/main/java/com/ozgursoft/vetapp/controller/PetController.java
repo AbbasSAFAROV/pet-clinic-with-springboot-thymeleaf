@@ -30,10 +30,10 @@ public class PetController {
         return new PetCreateRequest();
     }
 
-    @ModelAttribute("petInstance")
+/*    @ModelAttribute("petInstance")
     public Pet createPetInstance(){
         return new Pet();
-    }
+    }*/
 
     @GetMapping()
     public String getAllPets(Model model){
