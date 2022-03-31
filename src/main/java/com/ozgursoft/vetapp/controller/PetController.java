@@ -35,6 +35,10 @@ public class PetController {
         return new Pet();
     }*/
 
+    public Pet createPetInstance(){
+        return new Pet();
+    }
+
     @GetMapping()
     public String getAllPets(Model model){
         List<Pet> pets = petService.findAllPets();
