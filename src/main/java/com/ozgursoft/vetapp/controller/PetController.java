@@ -35,9 +35,9 @@ public class PetController {
         return new Pet();
     }*/
 
-    public Pet createPetInstance(){
+    /*public Pet createPetInstance(){
         return new Pet();
-    }
+    }*/
 
     @GetMapping()
     public String getAllPets(Model model){
